@@ -34,3 +34,9 @@
     Güvenlik: Uygulama, kullanıcıların kişisel ve ticari bilgilerini korumak için gerekli güvenlik önlemlerini almalıdır.
     Veri Yedekleme ve Geri Yükleme: Uygulama verilerinin düzenli olarak yedeklenmesi ve gerektiğinde geri yüklenebilmesi önemlidir.
     Destek ve Bakım: Uygulamanın uzun vadede sürdürülebilmesi için gerekli destek ve bakım planı yapılmalıdır.
+
+
+- - - -  KULLANILMASI PLANLANAN PAKETLER - - - -
+
+https://github.com/jeremykenedy/laravel-roles A Powerful package for handling roles and permissions in Laravel.
+
