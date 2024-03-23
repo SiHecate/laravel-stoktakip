@@ -17,6 +17,8 @@
         Ürün görselleri ve dosyaları
         Stok seviyesi takibi
         Minimum ve maksimum stok seviyesi uyarıları
+        Gelişmiş arama fonksiyonu
+
 
 
     Stok Hareketleri:
@@ -32,21 +34,10 @@
         Ürün satış raporları
         Gelişmiş filtreleme ve özelleştirme seçenekleri
 
-
-    Diğer Özellikler:
-        Çoklu dil desteği
-        Gelişmiş arama fonksiyonu
-        Yedekleme ve geri yükleme
-        Güvenlik ve izin yönetimi
-
 Önem Verilmesi Gereken Noktalar:
 
-    Kullanıcı Dostu Arayüz: Uygulamanın arayüzü basit, kullanımı kolay ve sezgisel olmalıdır.
-    Güvenilirlik ve Performans: Uygulama hatalara karşı dayanıklı, hızlı ve stabil çalışmalıdır.
     Ölçeklenebilirlik: Uygulama, ihtiyaç duyulduğunda kolayca genişletilebilmelidir.
-    Güvenlik: Uygulama, kullanıcıların kişisel ve ticari bilgilerini korumak için gerekli güvenlik önlemlerini almalıdır.
-    Veri Yedekleme ve Geri Yükleme: Uygulama verilerinin düzenli olarak yedeklenmesi ve gerektiğinde geri yüklenebilmesi önemlidir.
-    Destek ve Bakım: Uygulamanın uzun vadede sürdürülebilmesi için gerekli destek ve bakım planı yapılmalıdır.
+    Veri Yedekleme ve Geri Yükleme: Uygulama verilerinin düzenli olarak yedeklenmesi ve gerektiğinde geri yüklenebilmesi önemlidir. -> Bu konu hakkında uygulama sonunda araştırmalara başlayacağım.
 
 
 - - - -  KULLANILMASI PLANLANAN PAKETLER - - - -
