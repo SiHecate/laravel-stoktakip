@@ -1,24 +1,38 @@
    Kullanıcı Yönetimi:
-        Farklı yetki seviyelerine sahip kullanıcılar (yönetici, personel)
-        Kullanıcı kayıt ve düzenleme
-        Kullanıcı erişim kontrolü
+        * Farklı yetki seviyelerine sahip kullanıcılar (yönetici, personel)
+         -> Admin ve User olarak iki farklı yetki seviyesi belirlendi,
+            ana kullanıcı Admin rolüne sahip olurken personeller user rolüne sahip olacak.
+
+        * Kullanıcı kayıt ve düzenleme
+        -> Admin(yönetici) sistem tarafından ilk kurulumda özel isim ve özel password kullanılarak oluşturulacak.
+
+        -> Personel kayıtları Admin(yönetici) tarafından yapılabilecek bir sayfada olacak bu sayede dışarıdan bir kullanıcı kendini sisteme kayıt edemeyecek.
+
+
     Ürün Yönetimi:
+
         Ürün ekleme, düzenleme ve silme
         Ürün kategorileri ve etiketleri
         Barkod ve seri numarası takibi
         Ürün görselleri ve dosyaları
         Stok seviyesi takibi
         Minimum ve maksimum stok seviyesi uyarıları
+
+
     Stok Hareketleri:
         Stok giriş ve çıkış takibi
         Farklı belge türleri (fatura, irsaliye, vb.)
         Stok transferleri
         Stok değerleme
+
+
     Raporlama:
         Stok durum raporları
         Stok hareket raporları
         Ürün satış raporları
         Gelişmiş filtreleme ve özelleştirme seçenekleri
+
+
     Diğer Özellikler:
         Çoklu dil desteği
         Gelişmiş arama fonksiyonu
