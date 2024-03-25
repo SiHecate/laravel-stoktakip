@@ -15,11 +15,23 @@ class CategoryController extends Controller
         $this->categoryService = $categoryService;
     }
 
-    public function store(CategoryRequest $request) {
-        $response = $this->categoryService->create($request);
+    public function list() {
+        $response = $this->categoryService->list();
         return $response;
     }
 
+    public function store(CategoryRequest $request) {
+        $response = $this->categoryService->store($request);
+        return $response;
+    }
 
+    public function show($id) {
+        $response = $this->categoryService->show($id);
+        return $response;
+    }
 
+    public function destroy($id) {
+        $response = $this->categoryService->destroy($id);
+        return $response;
+    }
 }
