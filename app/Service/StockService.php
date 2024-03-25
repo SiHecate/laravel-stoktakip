@@ -3,8 +3,132 @@
 namespace App\Service;
 
 use App\Models\Stock;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\JsonResponse;
 
 class StockService
 {
+
+    protected $categoryService;
+
+    public function __construct(CategoryService $categoryService)
+    {
+        $this->categoryService = $categoryService;
+    }
+
+
+
+    public function list(): JsonResponse {
+        try {
+            $stock = Stock::all();
+            return response()->json([
+                'message' => 'All stock list',
+                'data' => $stock
+            ]);
+        } catch (QueryException $e) {
+            return response()->json([
+                'message' => 'Error: Failed to find stocks',
+                'error' => $e->getMessage(),
+            ]);
+        }
+    }
+
+    public function store(array $data): JsonResponse {
+        try {
+            $stock = Stock::create($data);
+            $category =  $this->categoryService->findById($data['category_id']);
+            if ($category !== null) {
+                return response()->json([
+                    'message' => 'Stock created successfully',
+                    'data' => $stock,
+                ]);
+            } else {
+                return response()->json([
+                    'message' => 'Category not found for the given category_id',
+                    'category_id' => $data['category_id'],
+                ]);
+            }
+        } catch (QueryException $e) {
+            return response()->json([
+                'message' => 'Error: Failed to create stock',
+                'error' => $e->getMessage(),
+            ]);
+        }
+    }
+
+    public function search($data): JsonResponse {
+        try {
+            $stock = Stock::find($data);
+            if ($stock) {
+                return response()->json([
+                    'data' => $stock
+                ]);
+            } else {
+                return response()->json([
+                    'error' => 'stock cannot find in database'
+                ]);
+            }
+        } catch (QueryException $e) {
+            return response()->json([
+                'message' => 'Error: Failed to find spesific stock',
+                'error' => $e->getMessage(),
+            ]);
+        }
+    }
+
+    public function update($id, array $data): JsonResponse {
+        try {
+            $stock = Stock::find($id);
+            if ($stock) {
+                $stock->update($data);
+
+            }
+            return response()->json([
+                'message' => 'Category updated successfully',
+                'data' => $stock
+            ]);
+
+        } catch (QueryException $e) {
+            return response()->json([
+                'message' => 'Error: Failed to update stock',
+                'error' => $e->getMessage(),
+            ]);
+        }
+    }
+
+    public function destroy($id): JsonResponse {
+        try {
+            $stock = Stock::find($id);
+            if ($stock) {
+                $stock->delete();
+                return response()->json([
+                    'message' => 'stock deleted successfully',
+                    'data' => $stock,
+                ]);
+            } else {
+                return response()->json([
+                    'message' => 'Error: stock not found',
+                ], 404);
+            }
+        } catch (QueryException $e) {
+            return response()->json([
+                'message' => 'Error: Failed to delete stock',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function show($id): JsonResponse {
+        try {
+            $stock = Stock::find($id);
+            return response()->json([
+                'message' => 'Stock find successfuly'
+            ]);
+        } catch (QueryException $e) {
+            return response()->json([
+                'message' => 'Error: Failed to find stock',
+                'error' => $e->getMessage(),
+            ]);
+        }
+    }
 }

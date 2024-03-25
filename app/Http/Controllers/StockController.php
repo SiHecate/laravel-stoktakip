@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StockRequest;
 use App\Service\StockService;
 use Illuminate\Http\Request;
 
@@ -14,23 +15,41 @@ class StockController extends Controller
         $this->stockService = $stockService;
     }
 
-    public function store(){
-
+    public function list()
+    {
+        $response = $this->stockService->list();
+        return $response;
     }
 
-    public function search(){
-
+    public function store(StockRequest $request)
+    {
+        $response = $this->stockService->store($request->all());
+        return $response;
     }
 
-    public function update(){
-
+    public function search(Request $request)
+    {
+        $data = $request->all();
+        $response = $this->stockService->search($data);
+        return $response;
     }
 
-    public function destroy($id){
-
+    public function update(Request $request)
+    {
+        $id = $request->input('id');
+        $response = $this->stockService->update($id, $request->all());
+        return $response;
     }
 
-    public function show(){
+    public function destroy($id)
+    {
+        $response = $this->stockService->destroy($id);
+        return $response;
+    }
 
+    public function show($id)
+    {
+        $response = $this->stockService->show($id);
+        return $response;
     }
 }

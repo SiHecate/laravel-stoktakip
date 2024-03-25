@@ -64,6 +64,16 @@ class CategoryService
         }
     }
 
+
+    public function findById($id) {
+        $category = Category::find($id);
+        if($category) {
+            return $category->name;
+        } else {
+            return null;
+        }
+    }
+
     public function update($id, array $data): JsonResponse
     {
         try {
