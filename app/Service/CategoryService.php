@@ -64,6 +64,33 @@ class CategoryService
         }
     }
 
+    public function update($id, array $data): JsonResponse
+    {
+        try {
+            $category = Category::find($id);
+
+            if ($category) {
+                $category->update($data);
+
+                return response()->json([
+                    'message' => 'Category updated successfully',
+                    'data' => $category
+                ]);
+            } else {
+                return response()->json([
+                    'message' => 'Error: Category not found',
+                ], 404);
+            }
+        } catch (QueryException $e) {
+            return response()->json([
+                'message' => 'Error: Failed to update category',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+
+
     public function destroy($id): JsonResponse
     {
         try {

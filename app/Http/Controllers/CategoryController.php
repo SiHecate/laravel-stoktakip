@@ -30,6 +30,11 @@ class CategoryController extends Controller
         return $response;
     }
 
+    public function update(CategoryRequest $request, $id) {
+        $response = $this->categoryService->update($id, $request->all());
+        return $response;
+    }
+
     public function destroy($id) {
         $response = $this->categoryService->destroy($id);
         return $response;
