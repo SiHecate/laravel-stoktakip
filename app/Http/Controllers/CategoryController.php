@@ -21,7 +21,7 @@ class CategoryController extends Controller
     }
 
     public function store(CategoryRequest $request) {
-        $response = $this->categoryService->store($request);
+        $response = $this->categoryService->store($request->all());
         return $response;
     }
 
