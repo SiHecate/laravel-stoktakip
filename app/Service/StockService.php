@@ -131,4 +131,55 @@ class StockService
             ]);
         }
     }
+
+    public function increase($id, $specialAmount): JsonResponse {
+        try {
+            $stock = Stock::find($id);
+            if ($specialAmount != null ){
+                if ($stock) {
+                    $stock->stock += 1;
+                    $stock->save();
+                    return response()->json(['success' => true, 'message' => 'Stock quantity increased'], 200);
+                } else {
+                    return response()->json(['success' => false, 'message' => 'Stock not found'], 404);
+                }
+            } else {
+                if ($stock) {
+                    $stock->stock += $specialAmount;
+                    $stock->save();
+                    return response()->json(['success' => true, 'message' => 'Stock quantity increased', 'Stock added' => $specialAmount], 200);
+                } else {
+                    return response()->json(['success' => false, 'message' => 'Stock not found'], 404);
+                }
+            }
+        } catch (QueryException $e) {
+            return response()->json(['success' => false, 'message' => 'An error occurred while increasing stock quantity'], 500);
+        }
+    }
+
+    public function decrease($id, $specialAmount): JsonResponse {
+        try {
+            $stock = Stock::find($id);
+            if ($specialAmount != null ){
+                if ($stock) {
+                    $stock->stock -= 1;
+                    $stock->save();
+                    return response()->json(['success' => true, 'message' => 'Stock quantity decreased'], 200);
+                } else {
+                    return response()->json(['success' => false, 'message' => 'Stock not found'], 404);
+                }
+            } else {
+                if ($stock) {
+                    $stock->stock -= $specialAmount;
+                    $stock->save();
+                    return response()->json(['success' => true, 'message' => 'Stock quantity decreased', 'Stock removed' => $specialAmount], 200);
+                } else {
+                    return response()->json(['success' => false, 'message' => 'Stock not found'], 404);
+                }
+            }
+        } catch (QueryException $e) {
+            return response()->json(['success' => false, 'message' => 'An error occurred while decreasing stock quantity'], 500);
+        }
+    }
+
 }

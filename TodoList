@@ -11,11 +11,10 @@
 
     Ürün Yönetimi:
 
+        Ürün ekleme, düzenleme ve silme // BİTTİ
         Kategori ekleme,düzenleme ve silme // BİTTİ
-        Ürün ekleme, düzenleme ve silme
-        Ürün kategorileri ve etiketleri
+        Ürün kategorileri ve etiketleri // BİTTİ
         Barkod ve seri numarası takibi
-        Ürün görselleri ve dosyaları
         Stok seviyesi takibi
         Minimum ve maksimum stok seviyesi uyarıları
         Gelişmiş arama fonksiyonu

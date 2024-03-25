@@ -15,6 +15,9 @@ class StockController extends Controller
         $this->stockService = $stockService;
     }
 
+
+    // Stock Crud
+
     public function list()
     {
         $response = $this->stockService->list();
@@ -50,6 +53,20 @@ class StockController extends Controller
     public function show($id)
     {
         $response = $this->stockService->show($id);
+        return $response;
+    }
+
+    public function increase(Request $request, $id)
+    {
+        $specialAmount = $request->has('specialAmount') ? $request->input('specialAmount') : null;
+        $response = $this->stockService->increase($id, $specialAmount);
+        return $response;
+    }
+
+    public function decrease(Request $request, $id)
+    {
+        $specialAmount = $request->has('specialAmount') ? $request->input('specialAmount') : null;
+        $response = $this->stockService->decrease($id, $specialAmount);
         return $response;
     }
 }
