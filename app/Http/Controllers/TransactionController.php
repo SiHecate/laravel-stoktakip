@@ -27,19 +27,15 @@ class TransactionController extends Controller
         return $this->transactionService->show($id);
     }
 
+    // destroy transaction
     public function destroy($id)
     {
         return $this->transactionService->destroy($id);
     }
 
+    // store transaction
     public function update(Request $request,$id) {
         return $this->transactionService->update($request,$id);
-    }
-
-    // get transaction by id
-    public function getTransaction($id)
-    {
-        return $this->transactionService->getTransaction($id);
     }
 
     // get transaction by user
@@ -50,10 +46,3 @@ class TransactionController extends Controller
     }
 }
 
-/*
-    Parametreler:
-        $user_id
-        $stock_id
-        $type
-        $amount
-*/

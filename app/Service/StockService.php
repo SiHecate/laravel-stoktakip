@@ -208,5 +208,4 @@ class StockService
             return response()->json(['success' => false, 'message' => 'An error occurred while decreasing stock quantity'], 500);
         }
     }
-
 }

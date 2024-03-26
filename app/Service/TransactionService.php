@@ -131,29 +131,6 @@ class TransactionService
         }
     }
 
-    public function getTransaction($id): JsonResponse
-    {
-        try {
-            $transaction = Transaction::find($id);
-            if ($transaction) {
-                return response()->json([
-                    'message' => 'Transaction found',
-                    'data' => $transaction
-                ]);
-            } else {
-                return response()->json([
-                    'message' => 'Transaction not found',
-                    'data' => null
-                ]);
-            }
-        } catch (\Exception $e) {
-            return response()->json([
-                'message' => 'Error: Failed to find transaction',
-                'error' => $e->getMessage()
-            ], 500);
-        }
-    }
-
     public function getTransactionByUser($userId): JsonResponse
     {
         try {
