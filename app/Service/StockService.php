@@ -132,6 +132,15 @@ class StockService
         }
     }
 
+    public function getStock($id) {
+        try {
+            $stock = Stock::first($id);
+            return $stock;
+        } catch (QueryException $e) {
+            return $e->getMessage();
+        }
+    }
+
     public function increase($id, $specialAmount): JsonResponse {
         try {
             $stock = Stock::find($id);

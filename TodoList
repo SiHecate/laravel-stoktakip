@@ -19,7 +19,21 @@
         Minimum ve maksimum stok seviyesi uyarıları
         Gelişmiş arama fonksiyonu
 
+    Transaction Yönetimi:
+        Transaction oluşturma işlemleri.
+            Transaction işlemleri stock üzerindeki hareketlere bağlı olarak oluşturulacak.
+        Fatura ve irsaliye oluşturma
+        KDV ve diğer vergilerin hesaplanması
+        Müşteri bilgileri ve geçmişi // UserID ile ilişkilendirilecek.
+        Gelişmiş arama fonksiyonu
 
+                Gerekli olan parametreler:
+                    - user_id
+                    - product_id
+                    - type (in, out)
+                    - amount
+                    - gelişmiş arama fonksiyonu
+                        - istenilen dönemler arasında arama yapılabilmesi.
 
     Stok Hareketleri:
         Stok giriş ve çıkış takibi
