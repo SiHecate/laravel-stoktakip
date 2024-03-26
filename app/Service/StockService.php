@@ -4,19 +4,20 @@ namespace App\Service;
 
 use App\Models\Stock;
 use Illuminate\Database\QueryException;
+use Illuminate\Http\Client\Request;
 use Illuminate\Http\JsonResponse;
 
 class StockService
 {
 
     protected $categoryService;
+    protected $transactionService;
 
-    public function __construct(CategoryService $categoryService)
+    public function __construct(CategoryService $categoryService, TransactionService $transactionService)
     {
         $this->categoryService = $categoryService;
+        $this->transactionService = $transactionService;
     }
-
-
 
     public function list(): JsonResponse {
         try {
@@ -141,13 +142,22 @@ class StockService
         }
     }
 
-    public function increase($id, $specialAmount): JsonResponse {
+    // Stock id'sinden stockların özelliği alınacak bu sayede transaction işlemi yapılabilecek.
+    public function increase(Request $request, $id, $specialAmount): JsonResponse {
         try {
+            $user_id = $request->user()->id;
             $stock = Stock::find($id);
             if ($specialAmount != null ){
                 if ($stock) {
                     $stock->stock += 1;
                     $stock->save();
+                    $current_stock = $stock->stock;
+                    $stock->transaction()->create([
+                        'user_id' => $user_id,
+                        'stock_id' => $stock->id,
+                        'type' => 'Stock Increase',
+                        'amount' => $current_stock,
+                    ]);
                     return response()->json(['success' => true, 'message' => 'Stock quantity increased'], 200);
                 } else {
                     return response()->json(['success' => false, 'message' => 'Stock not found'], 404);
@@ -166,13 +176,21 @@ class StockService
         }
     }
 
-    public function decrease($id, $specialAmount): JsonResponse {
+    public function decrease(Request $request ,$id, $specialAmount): JsonResponse {
         try {
+            $user_id = $request->user()->id;
             $stock = Stock::find($id);
             if ($specialAmount != null ){
                 if ($stock) {
                     $stock->stock -= 1;
                     $stock->save();
+                    $current_stock = $stock->stock;
+                    $stock->transaction()->create([
+                        'user_id' => $user_id,
+                        'stock_id' => $stock->id,
+                        'type' => 'Stock Decrease',
+                        'amount' => $current_stock,
+                    ]);
                     return response()->json(['success' => true, 'message' => 'Stock quantity decreased'], 200);
                 } else {
                     return response()->json(['success' => false, 'message' => 'Stock not found'], 404);
