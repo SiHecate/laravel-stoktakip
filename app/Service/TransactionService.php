@@ -30,11 +30,32 @@ class TransactionService
         }
     }
 
-    public function store($request)
+    public function store($user_id, $stock_id, $type, $amount)
     {
         try {
-
+            $stock = $this->stockService->getStock($stock_id);
+            if ($stock) {
+                $transaction = new Transaction();
+                $transaction->user_id = $user_id;
+                $transaction->stock_id = $stock_id;
+                $transaction->type = $type;
+                $transaction->amount = $amount;
+                $transaction->save();
+                return response()->json([
+                    'message' => 'Transaction created successfully',
+                    'data' => $transaction
+                ]);
+            } else {
+                return response()->json([
+                    'message' => 'Stock not found',
+                    'unavalibale stock' => $stock_id,
+                ]);
+            }
         } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'database_error: Failed to create transaction',
+                'error' => $e->getMessage()
+            ], 500);
         }
     }
 
