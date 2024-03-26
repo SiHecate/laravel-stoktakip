@@ -15,7 +15,7 @@
         Kategori ekleme,düzenleme ve silme // BİTTİ
         Ürün kategorileri ve etiketleri // BİTTİ
         Barkod ve seri numarası takibi
-        Stok seviyesi takibi
+        Stok seviyesi takibi // Observer pattern ile birlitke uygulanacak.
         Minimum ve maksimum stok seviyesi uyarıları
         Gelişmiş arama fonksiyonu
 
@@ -40,7 +40,22 @@
     Veri Yedekleme ve Geri Yükleme: Uygulama verilerinin düzenli olarak yedeklenmesi ve gerektiğinde geri yüklenebilmesi önemlidir. -> Bu konu hakkında uygulama sonunda araştırmalara başlayacağım.
 
 
+Kritik stok notification sistemi.
+    composer require beyondcode/laravel-websockets
+    composer require pusher/pusher-php-server
+    .env
+        BROADCAST_DRIVER=pusher
+
+        PUSHER_APP_ID=12345
+        PUSHER_APP_KEY=12345
+        PUSHER_APP_SECRET=12345
+        PUSHER_APP_CLUSTER=mt1
+
+    php artisan vendor:publish --provider="BeyondCode\LaravelWebSockets\WebSocketsServiceProvider" --tag="migrations"
+    php artisan websockets:serve
+
+
+
 - - - -  KULLANILMASI PLANLANAN PAKETLER - - - -
 
 https://github.com/jeremykenedy/laravel-roles A Powerful package for handling roles and permissions in Laravel.
-

@@ -15,9 +15,6 @@ class StockController extends Controller
         $this->stockService = $stockService;
     }
 
-
-    // Stock Crud
-
     public function list()
     {
         $response = $this->stockService->list();
