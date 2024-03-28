@@ -69,7 +69,6 @@ Kritik stok notification sistemi.
     php artisan websockets:serve
 
 
-
 - - - -  KULLANILMASI PLANLANAN PAKETLER - - - -
 
 https://github.com/jeremykenedy/laravel-roles A Powerful package for handling roles and permissions in Laravel.

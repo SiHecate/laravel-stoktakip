@@ -47,3 +47,17 @@ Route::prefix('category')->middleware('auth:sanctum')->group(function () {
     Route::put('/{id}', 'CategoryController@update');
     Route::delete('/{id}', 'CategoryController@destroy');
 });
+
+Route::prefix('report')->middleware('auth:sanctum')->group(function () {
+    Route::get('/', 'ReportController@getAllReport');
+    Route::get('/userReport', 'ReportController@getUserReports');
+    Route::get('/{id}', 'ReportController@getReportById');
+    Route::get('/yearly', 'ReportController@getYearlyReport');
+    Route::get('/monthly', 'ReportController@getMonthlyReport');
+    Route::get('/weekly', 'ReportController@getWeeklyReport');
+    Route::get('/daily', 'ReportController@getDailyReport');
+    Route::get('/customDay/{day}', 'ReportController@getCustomDayReport');
+    Route::get('/customMonth/{month}', 'ReportController@getCustomMonthReport');
+    Route::get('/customYear/{year}', 'ReportController@getCustomYearReport');
+    Route::get('/customTimeRange/{start}/{end}', 'ReportController@getCustomTimeRangeReport');
+});

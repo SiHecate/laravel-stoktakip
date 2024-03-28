@@ -55,15 +55,17 @@ class StockController extends Controller
 
     public function increase(Request $request, $id)
     {
+        $user_id = $request->user()->id;
         $specialAmount = $request->has('specialAmount') ? $request->input('specialAmount') : null;
-        $response = $this->stockService->increase($id, $specialAmount);
+        $response = $this->stockService->increase($user_id,$id, $specialAmount);
         return $response;
     }
 
     public function decrease(Request $request, $id)
     {
+        $user_id = $request->user()->id;
         $specialAmount = $request->has('specialAmount') ? $request->input('specialAmount') : null;
-        $response = $this->stockService->decrease($id, $specialAmount);
+        $response = $this->stockService->decrease($user_id,$id, $specialAmount);
         return $response;
     }
 }

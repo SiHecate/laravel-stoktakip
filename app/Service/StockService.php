@@ -143,9 +143,8 @@ class StockService
     }
 
     // Stock id'sinden stockların özelliği alınacak bu sayede transaction işlemi yapılabilecek.
-    public function increase(Request $request, $id, $specialAmount): JsonResponse {
+    public function increase($user_id, $id, $specialAmount): JsonResponse {
         try {
-            $user_id = $request->user()->id;
             $stock = Stock::find($id);
             if ($specialAmount != null ){
                 if ($stock) {
@@ -176,9 +175,8 @@ class StockService
         }
     }
 
-    public function decrease(Request $request ,$id, $specialAmount): JsonResponse {
+    public function decrease($user_id ,$id, $specialAmount): JsonResponse {
         try {
-            $user_id = $request->user()->id;
             $stock = Stock::find($id);
             if ($specialAmount != null ){
                 if ($stock) {
