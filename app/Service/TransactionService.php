@@ -2,18 +2,11 @@
 
 namespace App\Service;
 use App\Models\Transaction;
+use App\Models\Stock;
 use Illuminate\Http\JsonResponse;
 
 class TransactionService
 {
-
-    protected $stockService;
-
-    public function __construct(StockService $stockService)
-    {
-        $this->stockService = $stockService;
-    }
-
     public function list(): JsonResponse
     {
         try {
@@ -34,7 +27,7 @@ class TransactionService
     public function store($user_id, $stock_id, $type, $amount)
     {
         try {
-            $stock = $this->stockService->getStock($stock_id);
+            $stock = Stock::find($stock_id);
             if ($stock) {
                 $transaction = new Transaction();
                 $transaction->user_id = $user_id;

@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Service;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Service\ReportService;
 
 
 class ReportController

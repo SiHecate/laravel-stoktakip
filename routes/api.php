@@ -2,6 +2,12 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ImageController;
+use App\Http\Controllers\ReportController;
+use App\Http\Controllers\StockController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\TransactionController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -25,46 +31,51 @@ Route::get('/dashboard', function () {
     ]);
 });
 
-Route::prefix('stock')->middleware('auth:sanctum')->group(function () {
-    Route::get('/', 'StockController@list');
-    Route::post('/', 'StockController@store');
-    Route::get('/{id}', 'StockController@show');
-    Route::put('/{id}', 'StockController@update');
-    Route::delete('/{id}', 'StockController@destroy');
+
+Route::prefix('report')->middleware('auth:sanctum')->group(function () {
+    Route::get('/',  [ReportController::class, 'index']);
+    Route::get('/user',  [ReportController::class, 'getUserReports']);
+    Route::get('/{id}',  [ReportController::class, 'getReportById']);
+    Route::get('/yearly',  [ReportController::class, 'getYearlyReport']);
+    Route::get('/monthly',  [ReportController::class, 'getMonthlyReport']);
+    Route::get('/weekly',  [ReportController::class, 'getWeeklyReport']);
+    Route::get('/daily',  [ReportController::class, 'getDailyReport']);
+    Route::get('/custom/day/{day}',  [ReportController::class, 'getCustomDayReport']);
+    Route::get('/custom/month/{month}',  [ReportController::class, 'getCustomMonthReport']);
+    Route::get('/custom/year/{year}',  [ReportController::class, 'getCustomYearReport']);
+    Route::get('/custom/time-range/{start}/{end}',  [ReportController::class, 'getCustomTimeRangeReport']);
 });
 
 Route::prefix('transaction')->middleware('auth:sanctum')->group(function () {
-    Route::get('/', 'TransactionController@list');
-    Route::get('/userTransaction', 'TransactionController@getTransactionByUser');
-    Route::get('/{id}', 'TransactionController@show');
-    Route::delete('/{id}', 'TransactionController@destroy');
+    Route::get('/', [TransactionController::class, 'list']);
+    Route::get('/user', [TransactionController::class, 'getTransactionByUser']);
+    Route::get('/{id}', [TransactionController::class, 'show']);
+    Route::put('/{id}', [TransactionController::class, 'update']);
+    Route::delete('/{id}', [TransactionController::class, 'destroy']);
+});
+
+Route::prefix('stock')->middleware('auth:sanctum')->group(function () {
+    Route::get('/', [StockController::class, 'list']);
+    Route::post('/', [StockController::class, 'store']);
+    Route::get('/{id}', [StockController::class, 'show']);
+    Route::put('/{id}', [StockController::class, 'update']);
+    Route::delete('/{id}', [StockController::class, 'destroy']);
+    Route::post('/increase/{id}', [StockController::class, 'increase']);
+    Route::post('/decrease/{id}', [StockController::class, 'decrease']);
+    Route::post('/search', [StockController::class, 'search']);
 });
 
 Route::prefix('category')->middleware('auth:sanctum')->group(function () {
-    Route::get('/', 'CategoryController@list');
-    Route::post('/', 'CategoryController@store');
-    Route::get('/{id}', 'CategoryController@show');
-    Route::put('/{id}', 'CategoryController@update');
-    Route::delete('/{id}', 'CategoryController@destroy');
+    Route::get('/', [CategoryController::class, 'list']);
+    Route::post('/', [CategoryController::class, 'store']);
+    Route::get('/{id}', [CategoryController::class, 'show']);
+    Route::put('/{id}', [CategoryController::class, 'update']);
+    Route::delete('/{id}', [CategoryController::class, 'destroy']);
 });
 
-Route::prefix('report')->middleware('auth:sanctum')->group(function () {
-    Route::get('/', 'ReportController@getAllReport');
-    Route::get('/userReport', 'ReportController@getUserReports');
-    Route::get('/{id}', 'ReportController@getReportById');
-    Route::get('/yearly', 'ReportController@getYearlyReport');
-    Route::get('/monthly', 'ReportController@getMonthlyReport');
-    Route::get('/weekly', 'ReportController@getWeeklyReport');
-    Route::get('/daily', 'ReportController@getDailyReport');
-    Route::get('/customDay/{day}', 'ReportController@getCustomDayReport');
-    Route::get('/customMonth/{month}', 'ReportController@getCustomMonthReport');
-    Route::get('/customYear/{year}', 'ReportController@getCustomYearReport');
-    Route::get('/customTimeRange/{start}/{end}', 'ReportController@getCustomTimeRangeReport');
-});
-
-Route::prefix('image')->group(function () {
-    Route::get('/', 'ImageController@index');
-    Route::post('/upload', 'ImageController@store');
-    Route::get('/view', 'ImageController@show');
-    Route::delete('/delete/{id}', 'ImageController@destroy');
+Route::prefix('image')->middleware('auth:sanctum')->group(function() {
+    Route::post('/upload', [ImageController::class, 'upload']);
+    Route::delete('/delete', [ImageController::class, 'delete']);
+    Route::put('/update', [ImageController::class, 'update']);
+    Route::get('/show', [ImageController::class, 'show']);
 });

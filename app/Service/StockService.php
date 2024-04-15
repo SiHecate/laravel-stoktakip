@@ -9,16 +9,6 @@ use Illuminate\Http\JsonResponse;
 
 class StockService
 {
-
-    protected $categoryService;
-    protected $transactionService;
-
-    public function __construct(CategoryService $categoryService, TransactionService $transactionService)
-    {
-        $this->categoryService = $categoryService;
-        $this->transactionService = $transactionService;
-    }
-
     public function list(): JsonResponse {
         try {
             $stock = Stock::all();
@@ -37,7 +27,7 @@ class StockService
     public function store(array $data): JsonResponse {
         try {
             $stock = Stock::create($data);
-            $category =  $this->categoryService->findById($data['category_id']);
+            $category = $stock->category;
             if ($category !== null) {
                 return response()->json([
                     'message' => 'Stock created successfully',
