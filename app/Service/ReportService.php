@@ -162,6 +162,7 @@ class ReportService
         ]);
     }
 
+
     //Get custom time range report function
     public function getCustomTimeRangeReport($start, $end)
     {
@@ -178,3 +179,4 @@ class ReportService
         ]);
     }
 }
+

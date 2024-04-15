@@ -30,6 +30,7 @@ class TransactionService
         }
     }
 
+    // Store transaction function
     public function store($user_id, $stock_id, $type, $amount)
     {
         try {

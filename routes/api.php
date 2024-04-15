@@ -61,3 +61,10 @@ Route::prefix('report')->middleware('auth:sanctum')->group(function () {
     Route::get('/customYear/{year}', 'ReportController@getCustomYearReport');
     Route::get('/customTimeRange/{start}/{end}', 'ReportController@getCustomTimeRangeReport');
 });
+
+Route::prefix('image')->group(function () {
+    Route::get('/', 'ImageController@index');
+    Route::post('/upload', 'ImageController@store');
+    Route::get('/view', 'ImageController@show');
+    Route::delete('/delete/{id}', 'ImageController@destroy');
+});

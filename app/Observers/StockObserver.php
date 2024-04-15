@@ -41,7 +41,6 @@ class StockObserver
         }
     }
 
-
     /**
      * Handle the Stock "deleted" event.
      */
